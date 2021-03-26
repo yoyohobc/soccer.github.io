@@ -68,7 +68,7 @@ $.extend({
     //  如果是安卓手机浏览器且是配置的是APP内应用
     if (type == 0 && typeof (uiObject) !== "undefined") {
       useInfo = uiObject.getInfo(); //android终端
-      alert(JSON.stringify(useInfo));
+      alert(useInfo);
     } else if (type == 1) {
       if (typeof (window.getInfo) !== "undefined") {
         useInfo = window.getInfo()
