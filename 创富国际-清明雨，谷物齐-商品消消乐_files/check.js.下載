@@ -46,11 +46,11 @@
         };
         //alert('getAppUserInfo',useInfo)
         userInfo = $.parseJSON(useInfo);
-        alert(JSON.stringify(userInfo.account))
+        //alert(JSON.stringify(userInfo.account))
         appCustomerNo = userInfo.account;
         // userInfo ? userInfo : (useInfo && $.parseJSON(useInfo));
         // appCustomerNo = userInfo && userInfo.account;
-        //alert(appCustomerNo)
+        alert(JSON.stringify(appCustomerNo))
         $.checkActivation(appCustomerNo);
    },
    //新版ios
