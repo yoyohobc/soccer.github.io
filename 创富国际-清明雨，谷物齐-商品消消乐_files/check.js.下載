@@ -1,0 +1,393 @@
+ //app调用ios
+ window.getInfoCallback = function (info) {
+   $.getInfoIos(info);
+ };
+ var actId = 20210324;
+
+ var appCustomerNo,userInfo;
+//  var appCustomerNo = 81018134;
+//  var appCustomerNo = 81018303;
+  // var userInfo = { 
+  // 'account': appCustomerNo,
+  // 'accountType': 1,
+  // 'channel': 'umeng', 
+  // 'firstLogin': false,
+  // 'hasReal': true, 
+  // 'appVerCode': 177 
+//  };
+
+  // var mis_url = 'https://mis.cf139.com';
+  // var mis_url = '//mis.cf860.com';
+  var mis_url = '//mis.will68.com';
+ $.extend({
+   mechined() {
+     var u = navigator.userAgent;
+     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; // android终端
+     var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+     if (isAndroid) return 0;
+     if (isiOS) return 1;
+     else return -1;
+   },
+   getAppUserInfo() {
+     var type = $.mechined(),
+       user;
+       //  如果是安卓手机浏览器且是配置的是APP内应用
+       if (type == 0 && typeof (uiObject) !== "undefined") {
+         useInfo = uiObject.getInfo(); //android终端
+         alert(useInfo);
+        } else if (type == 1) {
+          if (typeof (window.getInfo) !== "undefined") {
+            useInfo = window.getInfo()
+            alert('ios1',window.getInfo())
+          } else {
+            window.webkit.messageHandlers.getInfo.postMessage("")
+            alert('ios2');
+          }
+        };
+        alert('getAppUserInfo',useInfo)
+        userInfo = $.parseJSON(useInfo);
+        appCustomerNo = userInfo.account;
+        // userInfo ? userInfo : (useInfo && $.parseJSON(useInfo));
+        // appCustomerNo = userInfo && userInfo.account;
+        $.checkActivation(appCustomerNo);
+   },
+   //新版ios
+   getInfoIos(info) {
+     appCustomerNo = info.account;
+     userInfo = info;
+     alert('getInfoIos',info)
+     $.checkActivation(appCustomerNo);
+   },
+    // loggedInByAccount:function(useInfo){
+    //    // var param = {
+    //    //   "url": mis_url + "/public/lucky/logined/" + actId,
+    //    // };
+    //    let param = $.extend(useInfo, {
+    //      'url': mis_url + "/public/ding/score",
+    //      'actId': 20200901,
+    //      'score': score,
+    //      'version': 1 
+    //   })
+    //    $.loadingPost(param, function(res){
+    //    },function(){
+    //      window.location.href ="intercept_login"
+    //    })
+    // },
+   ajaxData: function (options, callbackSuc, callbackErr) {
+     options = $.extend(options, {
+       "_r": Math.random()
+     });
+     $.ajax({
+       type: options.ajaxtype,
+       url: options.url,
+       async: true,
+       data: options,
+       dataType: "json", //数据类型为jsonp
+       success: function (data) {
+         if ($.isFunction(callbackSuc)) callbackSuc(data);
+       },
+       error: function (data) {
+         if ($.isFunction(callbackErr)) callbackErr(data);
+       }
+     });
+   },
+   jsonpAjax: function (options, callbackSuc, callbackErr) {
+     $.extend(options, {
+       _r: Math.random()
+     });
+     var jsonPUrl = options.url;
+     $.ajax({
+       type: "GET",
+       url: jsonPUrl,
+       async: true,
+       data: options,
+       dataType: "jsonp", // 数据类型为jsonp
+       jsonp: 'jsonpCallback',
+       success: function (data) {
+         if ($.isFunction(callbackSuc)) callbackSuc(data);
+       },
+       error: function (data) {
+         console.log("请求失败，url :" + options.url);
+         if ($.isFunction(callbackErr)) callbackErr(data);
+       }
+     });
+
+   },
+   //get提交加载
+   loadingGet: function (param, callbackSuc, callbackErr) {
+     param = $.extend(param, {
+       "ajaxtype": "GET"
+     });
+     $.jsonpAjax(param, callbackSuc, callbackErr);
+   },
+   //post提交加载
+   loadingPost: function (param, callbackSuc, callbackErr) {
+     param = $.extend(param, {
+       "ajaxtype": "POST"
+     });
+     $.jsonpAjax(param, callbackSuc, callbackErr);
+   },
+   //post提交加载
+   loadingPostNo: function (param, callbackSuc, callbackErr) {
+     param = $.extend(param, {
+       "ajaxtype": "POST"
+     });
+     $.ajaxData(param, callbackSuc, callbackErr);
+   },
+   loadingGetNo: function (param, callbackSuc, callbackErr) {
+     param = $.extend(param, {
+       "ajaxtype": "GET"
+     });
+     $.ajaxData(param, callbackSuc, callbackErr);
+   },
+   initEvent() {
+     $("#closeMyScore").click(function () {
+       $.submitScore()
+     })
+     //开始游戏
+    //  $("#startBtn").click(function () {
+    //    $.accStatus()
+    //  })
+     //返回
+     $("#back").click(function () {
+       $("#gameArea").hide();
+       $.noScroll(false);
+       location.reload();
+     })
+     //查看奖励
+     $("#checkPrice").click(function () {
+       $("#priceList").show();
+     })
+     //关闭奖励弹窗
+     $("#closePriceList").click(function () {
+       $("#priceList").hide();
+     })
+     //关闭排名弹窗
+     $("#closeRankList").click(function () {
+       $("#rankList").hide();
+       $.noScroll(false);
+     })
+     $("#goDeposit").click(function() {
+      window.location.href = "https://admin.cfdealer88.com?intercept_deposit";
+    });
+     //关闭请至 app 玩游戏弹窗 下载app
+     $("#closeInfo").click(function () {
+      //  $.downloadApp();
+       $("#appInfo").hide();
+     })
+     //关闭 每天只能玩一次弹窗
+     $("#closePlay").click(function () {
+       $("#playPopup").hide();
+       $.noScroll(false);
+     })
+     $("#noPlay").click(function () {
+       $("#goOnPlay,#gameArea").hide();
+       $.noScroll(false);
+     })
+     $("#play").click(function () {
+       $("#goOnPlay").hide()
+       $.accStatus();
+     })
+
+      // try {
+      // console.log($.mechined());
+        if ($.mechined() == 0) {//android
+          $(".download a").attr("href", 'https://sc.tfejy.com/source/material/CFD_APP.apk')
+        }else if ($.mechined() == 1){//ios
+          $(".download a").attr("href","https://itunes.apple.com/us/app/chuang-fucfd/id1153506842?mt=8")
+          $(".download").click(function(){
+            window.open("https://itunes.apple.com/us/app/chuang-fucfd/id1153506842?mt=8");
+          })
+        }else{
+          $(".download a").attr("href","https://sc.tfejy.com/source/material/CFD_APP.apk")
+        }
+      // } catch (e){
+      //     console.log(e);
+      //     $(".download a").attr("href","https://itunes.apple.com/us/app/chuang-fucfd/id1153506842?mt=8")
+      // }
+
+      // $(".download a").click(function (){
+      //   try{
+
+      //   }catch(e){
+      //     console.log(e);
+      //     console.log('catch');
+          
+          
+      //   }
+      // })
+   },
+   noScroll(noScroll){
+
+    var gameArea = document.getElementById("gameArea");
+    if(noScroll){
+      gameArea.addEventListener('touchmove',function(e){
+        e.preventDefault();
+      },{passive: false});
+      
+      $("body").css("overflow","hidden");
+      $("body").css("position","fixed");
+      $("body").css("z-index","100");
+    }else{
+      // document.removeEventListener('touchmove',function(e){
+      //   e.preventDefault();  
+      // },{passive: false})
+      $("body").css("overflow","unset");
+      $("body").css("position","unset");
+    }
+  },
+   downloadApp() {
+     if ($.mechined() == 0) {//android
+       $("#closeInfo a").attr("href", 'https://sc.tfejy.com/source/material/CFD_APP.apk')
+     }else if ($.mechined() == 1){//ios
+       $("closeInfo a").attr("href","https://apps.apple.com/cn/app/%E5%88%9B%E5%AF%8Ccfd-%E5%A4%96%E6%B1%87%E5%8E%9F%E6%B2%B9%E4%BA%A4%E6%98%93%E6%9C%9F%E8%B4%A7%E8%B4%B5%E9%87%91%E5%B1%9E%E6%8A%95%E8%B5%84%E5%B9%B3%E5%8F%B0/id1153506842")
+     }else{
+       $("#closeInfo a").attr("href","https://sc.tfejy.com/source/material/CFD_APP.apk")
+     }
+   },
+   checkActivation: function (appCustomerNo) {
+    var options = {
+        "url": mis_url + "/public/customer/act/" + appCustomerNo
+    };
+    $.jsonpAjax(options, function (res) {
+
+      if (res.code == 200) {
+          data = res.ch_msg;
+          if (data[0]!== '' && data.length > 0) { 
+              //Array(1)
+              // if (data[0].activetime == "undefined" || data[0].activetime === "") { 
+              // 登录未激活，跳转存款页面
+              if(data[0].activetime === 0 ){
+                $('#deposit').show();
+              }
+          } else {
+            // 未登录未激活
+            // res.ch_msg = [], Array(0)
+            // $.closeMessage(res.ch_msg + '此帐号无效')
+          }
+      }
+    })
+  },
+   accStatus: function () { //#startBtn开始游戏
+      // $("#startBtn").off('click');
+      // alert('cfApiStart');
+     let param = $.extend(userInfo, {
+       'url': mis_url + "/public/ding/check",
+       'actId': actId,
+       'version': 0
+     })
+    //  console.dir(param);
+
+     $.loadingPost(param, function (data) {
+
+       if (data.code == 200) {
+         $("#gameArea").show();
+         xxl.start();
+       } else if (data.code == 1016) {
+         $("#playPopup").show();
+         $.noScroll(false);
+       } else if (data.code == 1003) {
+         $("#playPopup .title").html("活动已结束")
+         $("#playPopup").show();
+         $.noScroll(false);
+       } else if (data.code == 1004) {
+         $("#playPopup .title").html("活动尚未开始")
+         $("#playPopup").show();
+         $.noScroll(false);
+       } else if (data.code == 1014) {
+         $("#playPopup .title").html("无法找到活动")
+         $("#playPopup").show();
+         $.noScroll(false);
+       } else {
+         $("#playPopup .title").html(data.code_desc)
+         $("#playPopup").show();
+         $.noScroll(false);
+       }
+     },function(err){
+        // alert('cfApiEnd');
+        // $("#startBtn").click(function () {          
+        //   $.accStatus()
+        // });
+        // $("#startPage").hide()
+        $.noScroll(false);
+        // $("body").css("overflow","unset");
+        // $("body").css("position","unset");
+        // console.log('关闭scroll',err);
+        
+     })
+   },
+   submitScore() { //看完分數後按確認提交分數
+     let score = $("#thisTimeScore").html();
+
+     let param = $.extend(userInfo, {
+       'url': mis_url + "/public/ding/score",
+       'actId': actId,
+       'score': score,
+       'version': 0
+     })
+     
+     $.loadingPost(param, function (data) {
+       if (data.code == 200) {
+         $("#myScore").hide();
+         //ch_msg[0]為可玩遊戲次數
+         if (parseInt(data.ch_msg[0]) > 0) {
+           $("#goOnPlay").show()
+         } else {
+           $("#gameArea").hide();
+           $.noScroll(false);
+         }
+       } else if (data.code == 1016) {
+         $("#playPopup .title").html("没有次数了")
+         $("#playPopup").show();
+         $.noScroll(false);
+       } else {
+         $("#playPopup .title").html("注册失败")
+         $("#playPopup").show();
+         $.noScroll(false);
+       }
+     })
+
+   },
+   rankList() {
+     let param = $.extend(userInfo, {
+       'url': mis_url + "/public/ding/leaderboard",
+       'actId': actId,
+       'version': 0
+     })
+     $.loadingPost(param, function (data) {
+       if (data.code == 200) {
+         let score = data.ch_msg[0].my; //用戶的分數
+
+         $("#totalScore").html(score + ' 分');
+         let dataList = data.ch_msg[0].result; // 其他用戶的分數(陣列)
+         if (dataList.length == 0) {
+           $("#recodeNone").show();
+           $("#listRank").hide()
+         } else {
+           $("#listRank").show()
+           $("#recodeNone").hide();
+         }
+         let str = "",
+           arr = [];
+         for (let i in dataList) {
+           str += `<li>
+                    <div class="left">Top ${Number(i)+1}</div>
+                    <div class="middle">${dataList[i].customerNo}</div>
+                    <div class="left">${dataList[i].score} 分</div>
+                    </li>`
+         }
+         arr.push(str)
+         $("#listRank").empty().append(arr)
+         $("#rankList").show();
+         $.noScroll(true);
+
+       }else if (data.code == 1001){ //请先登陆再操作
+        $("#playPopup .title").html(data.code_desc);
+        $("#playPopup").show();
+        // $.noScroll(false);
+       }else{
+        // $.noScroll(false);
+       }
+     })
+   }
+ })

@@ -1,0 +1,669 @@
+html,
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: \\5FAE\8F6F\96C5\9ED1, Microsoft Yahei, sans-serif */
+    /* font-family: \\5FAE\8F6F\96C5\9ED1, Microsoft ZeHei, sans-serif */
+    font-family: Microsoft ZeHei, sans-serif
+}
+
+.banner {
+    width: 100%;
+    height: 5.25rem;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/banner_bg.jpg') no-repeat;
+    background-size: 100% 5.25rem;
+    text-align: center;
+    padding-top: 1.1rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@keyframes heart {
+    0% {
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    50% {
+        -moz-transform: translate(0, -10px);
+        -webkit-transform: translate(0, -10px);
+        -o-transform: translate(0, -10px);
+        -ms-transform: translate(0, -10px);
+        transform: translate(0, -10px);
+    }
+    100% {
+        -moz-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+
+.banner .ghost {
+    animation: heart 2s ease-in-out infinite;
+    position: absolute;
+}
+
+.banner .ghost img {
+  width: 100%;
+  height: 100%;
+}
+
+.banner .ghost.ghost1 {
+  width: .54rem;
+  height: .69rem;
+  left: .9rem;
+  top: 2.15rem;
+}
+
+.banner .ghost.ghost2 {
+  width: .71rem;
+  height: .91rem;
+  right: .8rem;
+  top: 2.6rem;
+}
+
+.banner .ball img {
+    width: 1.35rem;
+}
+
+.banner .time {
+  position: absolute;
+  user-select: none;
+  opacity: 0;
+}
+
+.banner .font img {
+    width: 4.58rem;
+    height: 2.43rem;
+}
+
+.second_part {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/bg.png') no-repeat;
+    background-size: cover;
+    overflow:hidden;
+    /* padding: .9rem 0 1rem; */
+}
+
+.second_part .inner {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/info_bg.png') no-repeat;
+    width: 7.12rem;
+    height: 4.7rem;
+    background-size: 7.12rem 4.7rem;
+    margin: 0 auto .25rem;
+    text-align: center;
+}
+
+/* .second_part .info_detail {
+    font-size: .28rem;
+    color: #196080;
+    padding-top: 3.2rem;
+    padding-left: .55rem;
+    text-align: left;
+}
+
+.second_part .second_info {
+    font-size: .38rem;
+    color: #fff;
+    -webkit-text-stroke: .02rem #19677f;
+    font-weight: bold;
+    position: relative;
+} */
+/* 
+.second_part .title {
+    text-align: center;
+    font-size: .4rem;
+    -webkit-text-stroke: .02rem #7c1a3b;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+}
+
+.second_part .title span {
+    color: #fff826;
+} */
+
+.third_part .decoration{
+    width: 6.41rem;
+    height: .92rem;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/decorations.png');
+    background-size: cover;
+}
+
+.third_part .title-rule {
+    width: 1.5rem;
+    height: .34rem;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/actTitle.png');
+    background-size: cover;
+    font-size: 0;
+    margin: 0 auto .3rem;
+}
+
+.third_part .title-notice {
+  margin: .8rem auto .2rem;
+  font-size: .3rem;
+  font-weight: bold;
+  color: #3a3a3a;
+  text-align: left;
+}
+
+.third_part .copy {
+    font-size: .24rem;
+    text-align: center;
+    color: #3a3a3a;
+    padding-top: .56rem;
+    line-height: .4rem;
+}
+
+.second_list {
+    font-size: .3rem;
+    text-align: center;
+}
+
+.second_list .item {
+    width: 6.05rem;
+    height: .85rem;
+    line-height: .85rem;
+    margin: 0 auto .29rem;
+    color:transparent;
+}
+
+
+.second_list .item1 {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/play.png') no-repeat;
+  background-size: cover;
+}
+
+.second_list .item2 {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/green.png') no-repeat;
+    background-size: cover;
+}
+
+.second_list .item3 {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/rank.png') no-repeat;
+  background-size: cover;
+}
+
+.third_part {
+  background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/bg.png') no-repeat;
+  background-size: cover;
+  padding: .3rem 0.6rem 1.1rem;
+}
+
+.third_part .rules {
+    font-size: 0;
+    color: #3a3a3a;
+}
+
+.third_part .rules .title {
+    font-weight: bold;
+    font-size: .26rem;
+    line-height: 1.5;
+}
+  
+  /* .third_part .rules .title:last-child{
+    margin-bottom: .3rem;
+} */
+
+.third_part .rules .content {
+    font-weight: normal;
+    font-size: .26rem;
+    display: inline-block;
+    line-height: .48rem;
+}
+
+
+.game_area {
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/gameArea_bg.png') no-repeat;
+    width: 7.5rem;
+    height: 100%;
+    background-size: 7.5rem 100%;
+    text-align: center;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+}
+
+.game_area .score {
+    position: relative;
+    width: 7.5rem;
+    padding: 1.5rem 0rem .2rem;
+}
+
+.start_page .start_btn {
+    margin-top: 2rem;
+}
+
+.start_page .start_btn img {
+    width: 2.47rem;
+    animation: heart 1.3s ease-in-out infinite;
+}
+
+#gameArea {
+    display: none;
+}
+
+.benci,
+.price_list,
+.rank_list,
+.app_info {
+    position: fixed;
+    background: rgba(0, 0, 0, .8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+}
+
+.benci .inner {
+    position: absolute;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/pop_up2.png') no-repeat;
+    width: 6.68rem;
+    height: 4.75rem;
+    background-size: 100% 100%;
+    top: 50%;
+    left: 50%;
+    margin-left: -3.34rem;
+    margin-top: -2.375rem;
+    text-align: center;
+}
+
+.price_list .inner {
+    position: absolute;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/pop_up1.png') no-repeat;
+    width: 6.91rem;
+    height: 10.09rem;
+    background-size: 6.91rem 10.09rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.rank_list .inner {
+    position: absolute;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/pop_up1.png') no-repeat;
+    width: 6.91rem;
+    height: 10.09rem;
+    background-size: 6.91rem 10.09rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.app_info .inner {
+    position: absolute;
+    width: 6.68rem;
+    height: 4.78rem;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/pop_up2.png') no-repeat;
+    background-size: 100% 100%;
+    top: 50%;
+    left: 50%;
+    margin-left: -3.34rem;
+    margin-top: -2.39rem;
+    text-align: center;
+    padding-top: 1.4rem;
+    box-sizing: border-box;
+}
+
+#appInfo .inner {
+  padding-top: .8rem;
+}
+
+#deposit .inner {
+  padding-top: .8rem;
+}
+
+.app_info .inner .title {
+    font-size: .4rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.app_info .inner .content {
+    font-size: .3rem;
+    color: #fff;
+    margin: .55rem 0 0;
+    padding: 0 .6rem;
+}
+
+.popup-title{
+  font-size: .48rem;
+  font-weight: bold;
+  letter-spacing: .02rem;
+}
+
+.price_list .title,
+.rank_list .title {
+    text-align: center;
+    font-size: .3rem;
+    color: #fff;
+    margin-bottom: 0.1rem;
+}
+
+.price_list .all_title,
+.rank_list .all_title {
+    text-align: center;
+    color: #fff;
+    padding-top: 1.1rem;
+    margin-bottom: .3rem;
+}
+
+.rank_list .all_title {
+    margin-bottom: .3rem;
+}
+
+.price_list .inner ul li,
+.rank_list .inner ul li {
+    display: flex;
+    justify-content: space-between;
+    font-size: .26rem;
+    color: #fff;
+    margin: 0rem 1.5rem;
+    padding-bottom: .1rem;
+}
+
+.price_list .inner ul li:last-child,
+.rank_list .inner ul li:last-child {
+    border-bottom: none;
+}
+
+.price_list .inner ul li{
+  justify-content: center;
+  align-items: center;
+}
+
+.price_list .inner ul li .left:first-child{
+  margin-right: .2rem;
+}
+
+.price_list .price_info {
+    font-size: .24rem;
+    color: #6d9a02;
+    text-align: center;
+    margin: .1rem 0 .2rem;
+}
+
+.rank_list .total_score {
+    font-size: .5rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: .55rem;
+}
+
+.rank_list ul {
+    height: 3.6rem;
+    overflow-y: auto;
+    margin-top: .2rem;
+}
+
+.benci .inner .title {
+    font-size: .46rem;
+    color: #fff;
+    padding-top: .6rem;
+}
+
+.benci .inner .thisTimeScore {
+    font-size: .5rem;
+    color: #fff;
+    margin: .6rem 0 .8rem;
+}
+
+.benci .inner .thisTimeScore span {
+    color: #dd7d5a;
+}
+
+.benci .inner .closeMyScore,
+.price_list .closeMyScore,
+.rank_list .closeMyScore,
+.app_info .closeMyScore {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.9rem;
+    width: 4rem;
+    height: .7rem;
+    line-height: .7rem;
+    text-align: center;
+    font-size: .32rem;
+    color: #fff;
+    margin: 0 auto;
+    font-weight: bold;
+    background: #6d9a02;
+    border-radius: .1rem;
+    letter-spacing: .02rem;
+}
+
+#priceList .closeMyScore{
+  bottom: 1.25rem;
+}
+
+#rankList .closeMyScore{
+  bottom: 1.4rem;
+}
+
+
+.closeMyScore a {
+    color: #fff;
+    text-decoration: none;
+}
+
+div.main {
+    margin: 0 auto;
+    position: relative;
+}
+
+div.score {
+    z-index: 1001;
+    width: 100%;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+div.score>button {
+    margin: 30px 0 0 0;
+    padding: 6px 27px;
+    color: #fff;
+    background-color: #D44A7B;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+div.score>button:active {
+    background-color: #A92453;
+}
+
+.game-container {
+    position: relative;
+    width: 7rem;
+    height: 9.26rem;
+    background: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/game_bg.png') no-repeat;
+    background-size: 7rem 9.26rem;
+    margin: 0 auto;
+}
+
+canvas.gamecanvas {
+    position: absolute;
+    top: 1.3rem;
+    left: .15rem;
+    right: 0;
+    width: 5.2rem;
+    height: 6.6rem;
+    margin: auto;
+    z-index: 10;
+    border-radius: 0px;
+    /* background-color: #00311c; */
+    cursor: default;
+    z-index: 2;
+    border-radius: .4rem;
+    overflow: hidden;
+    padding: .2rem;
+    box-sizing: border-box;
+}
+
+.score .score-time {
+    width: 4.9rem;
+    height: .96rem;
+    margin: 0 auto .15rem;
+    line-height: .92rem;
+    background-image: url("https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/time_btn.png");
+    background-size: 100% 100%;
+    padding-left: 1.1rem;
+    font-size: .36rem;
+    color: #fff;
+    text-align-last: left;
+    box-sizing: border-box;
+}
+
+/* .score .score-time img {
+    width: .69rem;
+    height: .69rem;
+    margin-right: .2rem;
+    vertical-align: middle;
+} */
+.score .back {
+  position: absolute;
+  top: .32rem;
+  right: .22rem;
+}
+
+.score .back img {
+  display: block;
+  width: .66rem;
+  height: .68rem;
+}
+
+.score-num {
+    width: 4.9rem;
+    height: .96rem;
+    margin: 0 auto;
+    line-height: .92rem;
+    background-image: url("https://sc.tfejy.com/source/www/zt/lp-img/mobile/chingming/score_btn.png");
+    background-size: 100% 100%;
+    padding-left: 1.1rem;
+    font-size: .36rem;
+    color: #fff;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.footer {
+    width: 7.5rem;
+    height: 1rem;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #3f3f3f;
+}
+
+.footer ul {
+    display: flex;
+    height: 100%;
+    padding: 0 .6rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer ul li {
+  width: 1.45rem;
+  height: .6rem;
+  text-align: center;
+  line-height: .6rem;
+  font-size: .23rem;
+  background-color: #2fa100;
+  color: #fff;
+  border-radius: .1rem;
+}
+
+.second_part .title::before {
+    position: absolute;
+    content: '';
+    background-image: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/xiaoxiaole/icon.png');
+    background-repeat: no-repeat;
+    width: .28rem;
+    height: .39rem;
+    background-size: .28rem .39rem;
+    transform: rotate(180deg);
+    left: .8rem;
+}
+
+.second_part .title::after {
+    position: absolute;
+    content: '';
+    background-image: url('https://sc.tfejy.com/source/www/zt/lp-img/mobile/xiaoxiaole/icon.png');
+    background-repeat: no-repeat;
+    width: .28rem;
+    height: .39rem;
+    background-size: .28rem .39rem;
+    right: .8rem;
+    top: 0;
+}
+
+.load_app a {
+    text-decoration: none;
+    color: #cf9e4e;
+}
+
+.price_list .inner_list {
+    height: 5.1rem;
+    overflow: hidden;
+}
+
+.price_list .inner_list .left{
+  line-height: 1.2;
+}
+
+#goOnPlay .go_paly ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .7rem;
+  }
+  
+  #goOnPlay .go_paly ul li {
+    width: 1.5rem;
+    height: 0.7rem;
+    margin: 0 0.5rem;
+    text-align: center;
+    line-height: 0.7rem;
+    font-size: .38rem;
+    background-color: #2fa100;
+    color: #fff;
+    border-radius: 0.1rem;
+}
+
+.footer .open {
+    /* margin-left: .3rem; */
+}
+
+#recodeNone {
+    display: none;
+    margin: 1.5rem 0 2rem;
+    text-align: center;
+    color: #fff;
+    font-size: .28rem;
+}
+
+.inner_font {
+    width: 6.68rem;
+    margin-top: 3rem;
+}
