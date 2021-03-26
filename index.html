@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://m.cfd139.com/cn/zt/zuqiu_game/index.html?noneheader=1 -->
 <html style="font-size: 50px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <title>创富国际-春节射龙门</title>
     <meta name="keywords" content="创富国际，创富国际推荐有奖，创富国际交易返利">
     <meta name="description" content="创富国际外汇交易平台，中国外汇投资实例雄厚的在线金融公司，关注外汇交易、外汇投资、外汇买卖、炒外汇等新闻资讯，及最新汇率、外汇牌价查询、汇率换算等内容。创富国际有奖分享体验计划，双级推荐赠金、双层交易返利等多重奖励优惠。">
@@ -28,7 +28,7 @@
         !(function(doc, win) {
             let docEle = doc.documentElement, // 获取html元素
                 event = 'onorientationchange' in window ? 'orientationchange' : 'resize', // 判断是屏幕旋转还是resize;
-                
+
                 fn = function() {
                     const width = docEle.clientWidth;
                     window.matchMedia("(orientation: portrait)").matches && (docEle.style.fontSize = `${50 * (width / 375)}px`); // 设置html的fontSize，随着event的改变而改变。
@@ -72,14 +72,14 @@
                 </div>
             </div>
             <div class="rule">
-                <div class="container flex">                    
+                <div class="container flex">
                     <div class="congratulation-wrap">
                         <div class="congratulation-texts congratulation-text-1"></div>
                         <div class="congratulation-texts congratulation-text-2"></div>
                         <div class="congratulation-texts congratulation-text-3"></div>
                         <div class="congratulation-texts congratulation-text-4"></div>
                     </div>
-                    <div class="rule-txt">                        
+                    <div class="rule-txt">
                         <div class="rule-title"></div>
                         <ul>
                             <li>
@@ -95,7 +95,7 @@
                                 <div class="flex-1">真实客户。</div>
                             </li>
                         </ul>
-                        
+
                         <div>活动玩法:</div>
                         <ol>
                             <li>选择任意球员开始游戏。横轴及纵轴滚轮决定射门角度，点击游戏画面即可使滚动中的滚轮停止，并射门。</li>
@@ -128,10 +128,10 @@
                     <div class="closeMyScore" id="closePlay">知道了</div>
                 </div>
             </div>
-            
+
             <!-- 請至 APP 進行遊戲 START -->
             <div id="go-to-app-section" class="popup-content">
-                <div class="inner">                    
+                <div class="inner">
                     <div class="title"></div>
                     <div class="description">
                         活动奖励金，将发放至您的账户，<br>
@@ -144,7 +144,7 @@
 
             <!-- 請登入真實帳號 START -->
             <div id="login-section" class="popup-content">
-                <div class="inner">                    
+                <div class="inner">
                     <div class="title"></div>
                     <a class="btn">去登录</a>
                 </div>
@@ -173,7 +173,7 @@
 
             <!-- 貼心小貼士 START -->
             <div id="notice-section" class="popup-content">
-                <div class="inner">                    
+                <div class="inner">
                     <div class="title"></div>
                     <div class="description">
                         您账户还未激活，活动结束时，<br>
@@ -186,16 +186,16 @@
 
             <!-- 我的歷史高分 START -->
             <div id="ranking-score-section" class="popup-content max-height">
-                <div id="highestscore-section" class="inner inner-items">                    
+                <div id="highestscore-section" class="inner inner-items">
                     <div class="title"></div>
                     <div id="highestscore" class="highestscore txt-40"></div>
                 </div>
-                <div id="ranking-section" class="inner inner-items">                    
+                <div id="ranking-section" class="inner inner-items">
                     <div class="title">排行榜</div>
                     <div id="listRank"></div>
                     <div id="recodeNone">还未有记录</div>
                 </div>
-                <div class="inner">                    
+                <div class="inner">
                     <div class="btn btn-close">我知道了</div>
                 </div>
             </div>
@@ -203,10 +203,10 @@
 
             <!-- 獎勵列表 START -->
             <div id="award-section" class="popup-content max-height">
-                <div id="highestscore-section" class="inner inner-items">                    
+                <div id="highestscore-section" class="inner inner-items">
                     <div class="title"></div>
                     <div class="txt-27 color-yellow">竞赛奖</div>
-                    <div class="list-section inner inner-items">     
+                    <div class="list-section inner inner-items">
                         <ul>
                             <li>
                                 <span>第1名</span>
@@ -231,7 +231,7 @@
                         </ul>
                     </div>
                     <div class="txt-27 color-yellow">个人奖</div>
-                    <div class="list-section inner inner-items">     
+                    <div class="list-section inner inner-items">
                         <ul>
                             <li>
                                 <span>6000分</span>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="btn btn-close">我知道了</div>
                 </div>
-                
+
             </div>
             <!-- 獎勵列表 END -->
         </div>
@@ -267,7 +267,7 @@
 <script>
 
     $(function() {
-        
+
         $.initEvent();
 
         var href = window.location.search;
@@ -282,15 +282,16 @@
             // in app
             if (href.indexOf('noneheader') != -1) {
                 if (appCustomerNo) {
-                    $.accStatus()
-                    $.noScroll(true);
+                    alert(appCustomerNo)
+                    //$.accStatus()
+                    //$.noScroll(true);
                     // $.loggedInByAccount(useInfo);
                 } else {
                     $('#popup-wrapper').show();
                     $('#login-section').show();
                     $('#login-section a').attr("href", 'https://m.cftrader.com/login?intercept_login');
                 }
-            
+
             // in web
             } else {
                 $('#popup-wrapper').show();
