@@ -22,12 +22,12 @@
 
 
 
-
+    
     <title>创富国际-清明雨，谷物齐-商品消消乐</title>
     <meta name="keywords" content="创富国际，创富国际推荐有奖，创富国际交易返利">
     <meta name="description" content="创富国际外汇交易平台，中国外汇投资实例雄厚的在线金融公司，关注外汇交易、外汇投资、外汇买卖、炒外汇等新闻资讯，及最新汇率、外汇牌价查询、汇率换算等内容。创富国际有奖分享体验计划，双级推荐赠金、双层交易返利等多重奖励优惠。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -103,7 +103,7 @@
                   3. 活动结束后，依照历史最高得分获得对应个人奖。
               </div>
               <div class="content">
-                  4. 活动结束后，所有活动参与客户，依照历史高分排名，前三名不仅可获得个人奖奖励金，还可额外获得竞赛奖奖励金，每人只有一个竞赛奖名额(您不会同时占据两个以上的名次)。
+                  4. 活动结束后，所有活动参与客户，依照历史高分排名，前三名不仅可获得个人奖奖励金，还可额外获得竞赛奖奖励金，每人只有一个竞赛奖名额(您不会同时占据两个以上的名次)。 
               </div>
               <h2 class="title-notice">
                   注意事项:
@@ -300,22 +300,22 @@
             var href = window.location.search;
             if (href.indexOf("noneheader") != -1 || APP_MODE) { //app
                 $(".footer").css("display", "none");
-                setTimeout(()=>{
+                // setTimeout(()=>{
                   $.getAppUserInfo();//用戶
-                },1000)
+                // },1000)
             } else { //m
                 $("#checkRank").css("display","none");
                 $(".footer").css("display", "block");
             }
 
             $("#start").click(function() {
-
+              alert(appCustomerNo);
               if (href.indexOf('noneheader') != -1 || APP_MODE) { //app
                   if (appCustomerNo) {
                       $.noScroll(true);
+                      alert('确认用户状态')
                       $.accStatus()
                   } else {
-                      //alert(appCustomerNo);
                       window.location.href = "https://m.cftrader.com/login?intercept_login";
                   }
               } else {
@@ -336,9 +336,9 @@
                     $("#appInfo").show()
                 }
             })
-
-
-
+                      
+            
+            
         })
 
         $(".open").click(function() {

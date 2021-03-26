@@ -5,20 +5,20 @@
  var actId = 20210324;
 
  var appCustomerNo,userInfo;
-//  var appCustomerNo = 81018134;
+//  var appCustomerNo = 81018235;
 //  var appCustomerNo = 81018303;
-  // var userInfo = {
-  // 'account': appCustomerNo,
-  // 'accountType': 1,
-  // 'channel': 'umeng',
-  // 'firstLogin': false,
-  // 'hasReal': true,
-  // 'appVerCode': 177
+//   var userInfo = { 
+//   'account': appCustomerNo,
+//   'accountType': 1,
+//   'channel': 'umeng', 
+//   'firstLogin': false,
+//   'hasReal': true, 
+//   'appVerCode': 186 
 //  };
 
   // var mis_url = 'https://mis.cf139.com';
   // var mis_url = '//mis.cf860.com';
-  var mis_url = '//mis.will68.com';
+  var mis_url = 'http://mis.will68.com';
  $.extend({
    mechined() {
      var u = navigator.userAgent;
@@ -40,17 +40,20 @@
             useInfo = window.getInfo()
             alert('ios1',window.getInfo())
           } else {
-            window.webkit.messageHandlers.getInfo.postMessage("")
+            try {
+              window.webkit.messageHandlers.getInfo.postMessage("")
+            } catch (error) {
+              console.log(error);
+            }
             alert('ios2');
           }
         };
-        //alert('getAppUserInfo',useInfo)
         userInfo = $.parseJSON(useInfo);
-        //alert(JSON.stringify(userInfo.account))
         appCustomerNo = userInfo.account;
-        // userInfo ? userInfo : (useInfo && $.parseJSON(useInfo));
-        // appCustomerNo = userInfo && userInfo.account;
-        alert(JSON.stringify(appCustomerNo))
+        // // userInfo ? userInfo : (useInfo && $.parseJSON(useInfo));
+        // // appCustomerNo = userInfo && userInfo.account;
+        alert(useInfo)
+        alert(appCustomerNo);
         $.checkActivation(appCustomerNo);
    },
    //新版ios
@@ -68,7 +71,7 @@
     //      'url': mis_url + "/public/ding/score",
     //      'actId': 20200901,
     //      'score': score,
-    //      'version': 1
+    //      'version': 1 
     //   })
     //    $.loadingPost(param, function(res){
     //    },function(){
@@ -144,6 +147,7 @@
    },
    initEvent() {
      $("#closeMyScore").click(function () {
+       alert('#closeMyScore')
        $.submitScore()
      })
      //开始游戏
@@ -214,8 +218,8 @@
       //   }catch(e){
       //     console.log(e);
       //     console.log('catch');
-
-
+          
+          
       //   }
       // })
    },
@@ -226,13 +230,13 @@
       gameArea.addEventListener('touchmove',function(e){
         e.preventDefault();
       },{passive: false});
-
+      
       $("body").css("overflow","hidden");
       $("body").css("position","fixed");
       $("body").css("z-index","100");
     }else{
       // document.removeEventListener('touchmove',function(e){
-      //   e.preventDefault();
+      //   e.preventDefault();  
       // },{passive: false})
       $("body").css("overflow","unset");
       $("body").css("position","unset");
@@ -255,9 +259,9 @@
 
       if (res.code == 200) {
           data = res.ch_msg;
-          if (data[0]!== '' && data.length > 0) {
+          if (data[0]!== '' && data.length > 0) { 
               //Array(1)
-              // if (data[0].activetime == "undefined" || data[0].activetime === "") {
+              // if (data[0].activetime == "undefined" || data[0].activetime === "") { 
               // 登录未激活，跳转存款页面
               if(data[0].activetime === 0 ){
                 $('#deposit').show();
@@ -272,17 +276,19 @@
   },
    accStatus: function () { //#startBtn开始游戏
       // $("#startBtn").off('click');
-      // alert('cfApiStart');
+      alert('accStatusStart');
      let param = $.extend(userInfo, {
+      //  'url': mis_url + "/public/ding/check",
        'url': mis_url + "/public/ding/check",
        'actId': actId,
        'version': 0
      })
     //  console.dir(param);
-
+     alert(JSON.stringify(param));
      $.loadingPost(param, function (data) {
-
+      alert(JSON.stringify(data))
        if (data.code == 200) {
+         alert('游戏开始')
          $("#gameArea").show();
          xxl.start();
        } else if (data.code == 1016) {
@@ -306,16 +312,8 @@
          $.noScroll(false);
        }
      },function(err){
-        // alert('cfApiEnd');
-        // $("#startBtn").click(function () {
-        //   $.accStatus()
-        // });
-        // $("#startPage").hide()
+        alert(JSON.stringify(err));
         $.noScroll(false);
-        // $("body").css("overflow","unset");
-        // $("body").css("position","unset");
-        // console.log('关闭scroll',err);
-
      })
    },
    submitScore() { //看完分數後按確認提交分數
@@ -327,7 +325,7 @@
        'score': score,
        'version': 0
      })
-
+     alert(param)
      $.loadingPost(param, function (data) {
        if (data.code == 200) {
          $("#myScore").hide();
