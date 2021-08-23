@@ -441,11 +441,12 @@ $.extend({
             "account": user.account
         };
         $.loadingPostNo(param, function(res) {
+            alert(JSON.stringify(res))
             $.loginedByAccount(user);
         }, function(res) {
             console.error(res);
-            var a = JSON.stringify(res);
-            alert(JSON.stringify(res));
+            //var a = JSON.stringify(res);
+            alert(JSON.stringify(res))
             alert('活动报名失败');
         });
     },
