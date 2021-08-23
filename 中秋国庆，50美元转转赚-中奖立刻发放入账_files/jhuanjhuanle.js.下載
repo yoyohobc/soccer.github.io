@@ -1,0 +1,485 @@
+// var bRotate = false;
+var actId = 79;
+
+var pre_op = "https://precrs.cfd139.com";
+var mis_url = "https://precrs.cfd139.com";
+
+var user = {
+    // account: "81086614"
+};
+// var lotteryNo;
+var initUserInfo;
+window.getInfoCallback = function(info) {
+    $.getInfoIos(info);
+};
+
+$.extend({
+    lotteryNo: 0,
+    ajaxData: function(options, callbackSuc, callbackErr) {
+        options = $.extend(options, {
+            "_r": Math.random()
+        });
+        $.ajax({
+            type: options.ajaxtype,
+            url: options.url,
+            async: true,
+            data: options,
+            dataType: "json", //数据类型为jsonp
+            success: function(data) {
+                if ($.isFunction(callbackSuc)) callbackSuc(data);
+            },
+            error: function(data) {
+                if ($.isFunction(callbackErr)) callbackErr(data);
+            }
+        });
+    },
+    jsonpAjax: function(options, callbackSuc, callbackErr) {
+        $.extend(options, {
+            _r: Math.random()
+        });
+        var jsonPUrl = options.url;
+        $.ajax({
+            type: "GET",
+            url: jsonPUrl,
+            async: true,
+            data: options,
+            dataType: "jsonp", // 数据类型为jsonp
+            jsonp: 'jsonpCallback',
+            success: function(data) {
+                if ($.isFunction(callbackSuc)) callbackSuc(data);
+            },
+            error: function(data) {
+                console.log("请求失败，url :" + options.url);
+                if ($.isFunction(callbackErr)) callbackErr(data);
+            }
+        });
+
+    },
+    //get提交加载
+    loadingGet: function(param, callbackSuc, callbackErr) {
+        param = $.extend(param, {
+            "ajaxtype": "GET"
+        });
+        $.jsonpAjax(param, callbackSuc, callbackErr);
+    },
+    //post提交加载
+    loadingPost: function(param, callbackSuc, callbackErr) {
+        param = $.extend(param, {
+            "ajaxtype": "POST"
+        });
+        $.jsonpAjax(param, callbackSuc, callbackErr);
+    },
+    //post提交加载
+    loadingPostNo: function(param, callbackSuc, callbackErr) {
+        param = $.extend(param, {
+            "ajaxtype": "POST"
+        });
+        $.ajaxData(param, callbackSuc, callbackErr);
+    },
+    loadingGetNo: function(param, callbackSuc, callbackErr) {
+        param = $.extend(param, {
+            "ajaxtype": "GET"
+        });
+        $.ajaxData(param, callbackSuc, callbackErr);
+    },
+    initLuckyLottery: function() {
+        //初始用户是否登陆,主要是针对app，保证app登陆了，h5就不用登陆
+        $.initLogined();
+        //中奖记录
+        // $("#prize").on("click,touchend,touchstart",function(e){
+        //   e.preventDefault();
+        //   $.record();
+        // });
+    },
+    setCookie: function(name, value) {
+        var Days = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    },
+    delCookie: function(name) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval = $.getCookie(name);
+        var domain = mis_url.replace(/(http|https):\/\/mis./, "");
+        if (cval != null)
+            document.cookie = name + "=" + cval + ";domain=" + domain + ";path=/;expires=" + exp.toGMTString();
+    },
+    getCookie: function(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    },
+    initLuckyUser: function(res) {
+        initUserInfo = res.data;
+        $.luckyProp(initUserInfo); //TODO
+        if (res.code == 0) {
+            $.paoma(initUserInfo);
+            if (res.data.userStatus == 1) {
+                $.lotteryNo = 2;
+            }
+            if (res.data.userStatus == 2) {
+                $.lotteryNo = 1;
+            }
+        } else {
+            console.info(res.msg); //TODO
+        }
+    },
+    actLottery: function() {
+        // alert($.lotteryNo);
+        // if(initUserInfo.rightTime){
+        if ($.lotteryNo === 1) {
+            $.showlogin();
+        } else if ($.lotteryNo === 2) {
+            if (initUserInfo.account) {
+                $.accStatus(initUserInfo);
+            } else {
+                $.showlogin();
+            }
+        }
+        // }else{
+        //   alert('再试一遍');
+        // }
+    },
+    luckyProp: function(initUser) {
+        if (initUser.turnTimes) {
+            $(".loginMsg-userTip").html("您还有<span>" + initUser.turnTimes + "</span>次抽奖机会! ");
+        } else {
+            $(".loginMsg-userTip").html("您还有<span>" + 0 + "</span>次抽奖机会! ");
+        }
+    },
+    stopRotate: function() {
+        $(".lotteryCon").removeClass("rotate");
+        $("body,html").css('overflow', 'auto');
+    },
+    rotateFn: function() {
+        $.clickTurn();
+    },
+    clickTurn: function() {
+
+        var param = {
+            "url": mis_url + "/api/activity/luckyDrawReCord/startRaffle",
+            "luckyDrawId": actId,
+            "account": user.account
+        };
+        $.loadingPostNo(param, function(res) {
+            $.ajaxTurn(res);
+        }, function(data) {
+            console.info(data);
+        });
+    },
+    ajaxTurn: function(res) {
+        if (res.code == 0) {
+            var lotteryResult = res.data.prize;
+            var _angle;
+            if (lotteryResult == null) {
+                _angle = 0;
+            } else {
+                switch (lotteryResult.name) {
+                    case "一等奖":
+                        _angle = 60;
+                        break;
+                    case "二等奖":
+                        _angle = 120;
+                        break;
+                    case "三等奖":
+                        _angle = 180;
+                        break;
+                    case "四等奖":
+                        _angle = 240;
+                        break;
+                    case "五等奖":
+                        _angle = 300;
+                        break;
+                }
+            }
+            $(".lotteryCon").removeClass("rotate");
+            $('.lotteryCon').stopRotate();
+            $('.lotteryCon').rotate({
+                angle: 0,
+                animateTo: _angle + 1140,
+                duration: 3000,
+                callback: function() {
+                    var turnTimes = res.data.turnTimes;
+                    $(".loginMsg-userTip span").empty().html(turnTimes);
+
+                    if (lotteryResult == null) {
+                        $("#noPrize").show();
+                    } else {
+                        $("#suc .dialog-content span").empty().html(lotteryResult.bonus);
+                        $("#suc").show();
+                    }
+                }
+            });
+            return;
+            //如果后台返回的提示中没有登陆
+        } else if (res.prizeId == -2) {
+            $.showlogin();
+        } else if (res.code == 5001) {
+            $(".lotteryCon").removeClass("rotate");
+            // console.log(res.msg);//抱歉抽奖次数不足!
+            $("#msgPop .dialog-content").html(res.msg);
+            $("#msgPop").show();
+
+        } else if (res.code == 5002) {
+
+            $("#deposit").show();
+
+        } else if (res.code == 5003 || res.msg == '没有参与资格') {
+
+            $("#deposit").show();
+
+        } else if (res.code == 5004) {
+            $("#msgPop .dialog-content").html(res.msg);
+            $("#msgPop").show();
+        } else if (res.prizeId == -5) {
+            $("#msgPop .dialog-content").html(res.msg);
+            $("#msgPop").show();
+        } else if (res.prizeId == -1) {
+            alert("请联系在线客服!");
+        } else {
+            $("#msgPop .dialog-content").html(res.msg);
+            $("#msgPop").show();
+        }
+        $.stopRotate();
+    },
+    record: function() {
+        var param = {
+            "url": pre_op + "/api/activity/luckyDrawReCord/getRaffleByAccount",
+            "luckyDrawId": actId,
+            "account": user.account
+        };
+
+        $.loadingPostNo(param, function(res) {
+
+            if (res.code == 0) {
+
+                data = res.data;
+                var html = "",
+                    total = "",
+                    num = "";
+                if (data.length <= 0) {
+                    html += " <li><p>无记录</p></li>";
+                } else {
+                    data.forEach(function(item, index) {
+
+                        var prizeName = item.bonus;
+                        total += Number(prizeName);
+                        total = Number(total);
+                        num = index + 1;
+                        html +=
+                            "<li><div class='item'>\n" +
+                            "<span class=\"num\">" + num + "</span>\n" +
+                            "<div class='item'><time>" + item.time + "</time></div>\n" +
+                            "<p>抽中</p>\n" +
+                            "<div class=\"money\"><span>$" + prizeName + "</span></div>\n" +
+                            "<p>赠金</p></div>\n" +
+                            "</li>";
+                    });
+                }
+
+                $("#record .conList ul").empty().append(html);
+                $("#record").css("display", "block");
+                // $("body,html").css("overflow", "hidden");
+                $("#record .dialog-close").click(function() {
+                    $("body,html").css("overflow", "auto");
+                    $('#record').hide();
+                })
+
+            } else if (res.code == 500) {
+                $.showlogin();
+
+            }
+        }, function(res) {
+            console.info(res);
+        });
+
+    },
+    paoma: function(initUser) {
+
+        var html = "";
+        if (initUser.specials.length <= 0) {
+            html += " <li><p>无记录</p></li>";
+        } else {
+            initUser.specials.forEach(function(item) {
+                html += "  <li><p>恭喜 " + item.phone + " 抽中了 <span>" + item.bonus + " </span>美元<p></li>";
+            });
+        }
+        $(".marquee ul").empty().append(html);
+        $(".marquee").slide({ mainCell: ".marquee-layout ul", autoPage: true, effect: "topLoop", autoPlay: true, vis: 2 })
+    },
+    timeElapse: function(second) {
+        second = second / 1000;
+        if (second > 0) {
+            var day = Math.floor(second / (3600 * 24));
+            if (day < 1) {
+                day = 1;
+            }
+            $(".user").html("距离活动开始还有 <span>" + day + "</span> 天");
+        }
+    },
+    isEmpty: function(str) { //空的为true
+        return typeof(str) == "undefined" || str === '' || str == null;
+    },
+    mechined: function() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; // android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+        if (isAndroid) return 0;
+        if (isiOS) return 1;
+        else return -1;
+    },
+    showlogin: function() {
+        var noneHeader = $.urlParams("noneheader"),
+            type = $.mechined();
+        if (noneHeader !== null && $.trim(noneHeader).length > 0) {
+            if (type != -1) {
+
+                $("#login .dialog-close").click(function() {
+                    window.location.href = "https://m.cftrader.com/login?intercept_login";
+                });
+                // $("body").css("overflow", "hidden");
+                $("#login").show();
+
+            } else {
+                // $("body").css("overflow", "hidden");
+                $("#appLoad").show();
+            }
+        } else {
+            // $("body").css("overflow", "hidden");
+            $("#appLoad").show();
+
+        }
+    },
+    //检测app自动登陆实现
+    initLogined: function() {
+        //"actlucky:"+$.getCookie("actlucky"));
+        $.loadFromApp();
+    },
+    loadFromApp: function() { //81041865
+        var useInfo, type = $.mechined();
+        //如果是安卓手机浏览器且是配置的是APP内应用
+        var noneHeader = $.urlParams("noneheader");
+
+        if (noneHeader !== null && $.trim(noneHeader).length > 0 && noneHeader !== '') {
+            if (type == 0 && typeof(uiObject) !== "undefined") {
+                useInfo = uiObject.getInfo(); //android终端
+            } else if (type == 1) {
+                if (typeof(window.getInfo) !== "undefined") {
+                    useInfo = window.getInfo();
+                } else {
+                    window.webkit.messageHandlers.getInfo.postMessage("");
+                }
+            }
+        } else {
+            $.lotteryNo = 1;
+        }
+
+        if (typeof(useInfo) !== "undefined") //如果从APP获取到的信息不为空，则到后台进行存储
+        {
+            user = $.parseJSON(useInfo);
+            if (!$.isEmpty(user.account)) {
+                $.signUp(user);
+            } else {
+                $.lotteryNo = 1;
+            }
+        } else {
+            $.lotteryNo = 1;
+        };
+    },
+    getInfoIos(info) {
+        user = info;
+        if ($.isEmpty(user.account)) {
+            $.lotteryNo = 1;
+        }
+        $.signUp(user);
+    },
+    actTurner: function() {
+        //转到转盘操作
+        var paramLoginAfter = {
+            "url": pre_op + "/api/activity/luckyDrawReCord/loginAfter",
+            "luckyDrawId": actId,
+            "account": user.account
+        }
+        var param = {
+            "url": pre_op + "/api/activity/luckyDrawReCord/beforeRaffle",
+            "luckyDrawId": actId,
+            "account": user.account
+        };
+
+        $.loadingGetNo(paramLoginAfter, function(data) {
+            console.info(data);
+            $.loadingPostNo(param, function(data) {
+                $.initLuckyUser(data)
+            }, function(data) {
+                console.info(data);
+            });
+
+        }, function(data) {
+            console.info(data);
+        });
+
+    },
+    loginedByAccount: function(appUserInfo) { //自动登陆
+        appUserInfo = $.extend(appUserInfo, {
+            "url": "https://mis.cfd139.com" + "/public/lucky/logined/" + actId,
+        });
+        $.loadingGetNo(appUserInfo, function(data) {
+            console.log(data);
+            $.actTurner();
+        }, function(data) {
+            console.log(data);
+            $.actTurner(); //TODO是否改成showlogin
+        });
+    },
+    signUp: function(user) {
+        var param = {
+            "url": pre_op + "/api/activity/luckyDrawReCord/signUp",
+            "luckyDrawId": actId,
+            "account": user.account
+        };
+        $.loadingPostNo(param, function(res) {
+            $.loginedByAccount(user);
+        }, function(res) {
+            console.error(res);
+            alert('活动报名失败')
+        });
+    },
+    urlParams: function(key) {
+        value = "";
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) value = unescape(r[2]);
+        return value;
+    },
+    accStatus: function(initUser) {
+
+        var options = {
+            "url": pre_op + "/api/activity/luckyDrawReCord/activation",
+            "account": user.account,
+            "luckyDrawId": actId,
+            "type": 1
+        };
+        $.loadingGetNo(options, function(res) {
+            if (res.code == 0) {
+                data = res.data;
+                if (data.activationStatus == 1) {
+
+                    $.rotateFn();
+                } else if (data.activationStatus == 2) {
+                    $("#deposit").show();
+
+                } else {
+                    $("#deposit").show();
+
+                }
+            } else {
+                alert(res.msg)
+            }
+        }, function(err) {
+            console.log(err);
+        })
+    }
+});

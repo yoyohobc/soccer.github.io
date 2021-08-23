@@ -1,0 +1,692 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body,
+html {
+  background: #fff;
+  font-family: "Microsoft YaHei","Microsoft JhengHei", arial, sans-serif;
+}
+
+img {
+  overflow: hidden;
+  display: block;
+  border: none;
+}
+
+input {
+  resize: none;
+  border: none;
+}
+
+#main {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: auto !important;
+  color: #fff;
+}
+
+.lottery-bg {
+  position: relative;
+  width: 100%;
+  height: 32.88rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/(M)BG.png");
+  background-size: 7.5rem 32.88rem;
+  background-repeat: no-repeat;
+}
+
+.banner {
+  padding-top: 3.7rem;
+  padding-bottom: .1rem;
+}
+
+.banner-titleBox {
+  padding-left: .43rem;
+}
+
+.banner-subTitle {
+  width: 3.65rem;
+  height: .65rem;
+  margin-bottom: 0.3rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/(M)MoonFont.png");
+  background-size: 3.65rem .65rem;
+}
+
+.banner-subTitle h1, .banner-subTitle h2, .banner-subTitle h3 {
+  position: absolute;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 0;
+}
+
+.banner-mainTitle {
+  position: relative;
+  width: 6.65rem;
+  height: .9rem;
+  margin-bottom: 0.2rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/50M.png");
+  background-size: 6.65rem .9rem;
+}
+
+.banner-mainTitle h1, .banner-mainTitle h2, .banner-mainTitle h3 {
+  position: absolute;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 0;
+}
+
+.banner-actTime {
+  width: 6.5rem;
+  font-size: .36rem;
+  font-weight: bold;
+  color: #ffd49d;
+  text-align: left;
+  text-shadow: .01rem .01rem .03rem #ffd49d;
+  font-family: "Microsoft JhengHei","Microsoft YaHei", arial, sans-serif;
+}
+
+.marquee {
+  overflow: hidden;
+  padding-top: .47rem;
+  margin-bottom: .25rem;
+}
+
+.marquee-layout {
+  width: 5.85rem;
+  height: .55rem;
+  margin: 0 auto;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 0;
+}
+
+.marquee p {
+  display: block;
+  text-align: center;
+  line-height: .55rem;
+  font-size: .32rem;
+  color: #79fffc;
+}
+
+.marquee span {
+  display: inline-block;
+  margin: 0 .1rem;
+  font-size: .36rem;
+  font-weight: bold;
+  color: #fcc458;
+}
+
+.loginMsg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loginMsg-userTip {
+  font-size: .48rem;
+  color: #fff;
+}
+
+.loginMsg-userTip span {
+  display: inline-block;
+  font-size: .48rem;
+  font-weight: bold;
+  color: #ffbe35;
+}
+
+.lottery {
+  position: relative;
+  padding-top: 1.8rem;
+  padding-bottom: 0rem;
+}
+
+.lottery .lotteryBox {
+  width: 6.45rem;
+  height: 6.45rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.lottery .lotteryCon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.lottery .lotteryCon.rotate {
+  -webkit-animation: rotate 10s linear infinite;
+          animation: rotate 10s linear infinite;
+}
+
+.lottery .lottery-shadow {
+  position: absolute;
+  z-index: 5;
+  display: block;
+  width: 7.05rem;
+  height: 6.85rem;
+  right: -.47rem;
+  bottom: -.45rem;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.lottery .lotteryStart {
+  display: block;
+  position: absolute;
+  z-index: 15;
+  width: 2.7rem;
+  height: 3.55rem;
+  top: 44%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: transparent;
+  padding: 0;
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lottery .lotteryStart img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.btnList {
+  padding-top: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btnList-myPrize {
+  font-size: 0;
+  display: block;
+  width: 2.7rem;
+  height: 0.8rem;
+  margin: 0 auto;
+  font-size: .33rem;
+  line-height: .8rem;
+  text-align: center;
+  letter-spacing: .01rem;
+  border-radius: .1rem;
+  color: #fff;
+  background-color: #ff6154;
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.activity {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12.4rem;
+  color: #fff;
+  line-height: 1.8;
+  font-size: 0;
+  font-family: "Microsoft JhengHei","Microsoft YaHei", arial, sans-serif;
+}
+
+.activity-content {
+  width: 6.7rem;
+  margin: 0 auto;
+}
+
+.activity-info {
+  margin-bottom: .4rem;
+}
+
+.activity-method {
+  margin-bottom: 0.35rem;
+}
+
+.activity-title {
+  text-align: center;
+}
+
+.activity-title h3 {
+  display: inline-block;
+  margin-bottom: .27rem;
+  font-size: .43rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.activity .title-inline {
+  display: inline-block;
+  margin-right: .3rem;
+  font-size: .3rem;
+  color: #ffbf87;
+}
+
+.activity .title {
+  display: block;
+  font-size: .3rem;
+  margin-bottom: .05rem;
+  color: #ffbf87;
+}
+
+.activity .d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.activity li {
+  height: auto;
+  font-size: 0;
+  word-break: normal;
+}
+
+.activity .line {
+  font-size: 0.3rem;
+}
+
+.activity .ver-line {
+  display: inline-block;
+  font-size: 0.3rem;
+}
+
+.activity .no {
+  display: inline-block;
+  font-size: .3rem;
+  margin-right: .1rem;
+}
+
+.tc-hide {
+  display: none;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.masking {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*弹窗*/
+.tipPop {
+  display: none;
+}
+
+.tipPop .dialog {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.tipPop .dialog-back {
+  background-color: rgba(255, 0, 0, 0.3);
+  width: 6.4rem;
+  height: 7rem;
+  padding: .15rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: .3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tipPop .dialog-front {
+  width: 100%;
+  background-color: #fff;
+  border-radius: .3rem;
+}
+
+.tipPop .dialog-title {
+  padding-top: .95rem;
+  margin-bottom: .59rem;
+  text-align: center;
+  font-size: .35rem;
+  font-weight: bold;
+  color: #b75101;
+}
+
+.tipPop .dialog-title > img {
+  display: inline-block;
+  width: 4.35rem;
+  height: .6rem;
+}
+
+.tipPop .dialog-content {
+  margin-bottom: .6rem;
+  padding: 0 .4rem;
+  color: #606060;
+  font-size: .37rem;
+  line-height: 1.8;
+  letter-spacing: .02rem;
+}
+
+.tipPop .dialog-content ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tipPop .dialog-close {
+  display: inline-block;
+  width: 4.2rem;
+  height: 1rem;
+  line-height: 1rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/butten1.png");
+  background-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  font-size: .45rem;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  color: #b88c41;
+}
+
+#login .dialog-title {
+  padding-top: 2.4rem;
+  margin-bottom: .39rem;
+}
+
+#deposit .dialog-content {
+  letter-spacing: .03rem;
+  padding-top: 2rem;
+  font-family: "Microsoft YaHei","Microsoft JhengHei", arial, sans-serif;
+}
+
+.lotteryPop .dialog {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.lotteryPop .dialog-back {
+  width: 6.4rem;
+  height: 7rem;
+  padding: .15rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: .3rem;
+  background-color: rgba(255, 0, 0, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.lotteryPop .dialog-front {
+  width: 100%;
+  padding-top: .3rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: .3rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/red.png");
+  background-size: 6.15rem 4.6rem;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.lotteryPop .dialog-title {
+  width: 2.8rem;
+  height: .75rem;
+  margin: 0 auto .25rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/tittle4.png");
+  background-repeat: no-repeat;
+  background-size: 2.8rem .75rem;
+}
+
+.lotteryPop .dialog-content {
+  text-align: center;
+  margin-bottom: 3.3rem;
+  font-size: .57rem;
+  letter-spacing: .02rem;
+  color: #fff;
+}
+
+.lotteryPop .dialog-close {
+  display: block;
+  width: 3.35rem;
+  height: 1rem;
+  margin: 0 auto;
+  line-height: 1rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/butten2.png");
+  background-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  font-size: .45rem;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  color: #b88c41;
+}
+
+#noPrize .dialog-title {
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/tittle-E.png");
+}
+
+#record .dialog {
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#record .dialog-back {
+  width: 6.3rem;
+  height: 7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: .4rem;
+  border-radius: .3rem;
+  background-color: #a30c00;
+}
+
+#record .dialog-front {
+  width: 100%;
+  padding-top: .5rem;
+  border-radius: .3rem;
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff5850), to(#ff8065));
+  background-image: linear-gradient(to right, #ff5850 0%, #ff8065 100%);
+}
+
+#record .dialog-title {
+  color: #fff;
+  font-size: .57rem;
+  text-align: center;
+  letter-spacing: .06rem;
+  margin-bottom: .6rem;
+}
+
+#record .dialog-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow-y: auto;
+  height: 2.95rem;
+  margin-bottom: .3rem;
+  font-size: .35rem;
+  letter-spacing: .04rem;
+  color: #ffd087;
+}
+
+#record .dialog-content .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.1rem;
+}
+
+#record .dialog-content .num {
+  margin-right: .2rem;
+}
+
+#record .dialog-close {
+  display: block;
+  width: 3.35rem;
+  height: 1rem;
+  margin: 0 auto;
+  line-height: 1rem;
+  background-image: url("https://img.getfc.com.cn/source/www/zt/lp-img/mobile/jhuanjhuanle/butten2.png");
+  background-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  font-size: .45rem;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  color: #b88c41;
+}
+
+#msgPop .dialog-content {
+  margin-bottom: 0;
+  height: 67%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 751px) {
+  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+  ::-webkit-scrollbar {
+    width: 4px;
+    background-color: #6a5646;
+  }
+  /*定义滚动条轨道 内阴影+圆角*/
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    background-color: lightgray;
+  }
+  /*定义滑块 内阴影+圆角*/
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #dedebd;
+  }
+  /*定义最上方和最下方的按钮*/
+  ::-webkit-scrollbar-button {
+    background-color: #6a5646;
+  }
+}
+/*# sourceMappingURL=jhuanjhuanle.css.map */
