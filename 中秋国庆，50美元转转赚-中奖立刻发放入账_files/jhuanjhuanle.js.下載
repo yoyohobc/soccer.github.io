@@ -5,7 +5,7 @@ var pre_op = "http://gate.trexttd.com/crs";
 var mis_url = "http://gate.trexttd.com/crs";
 
 var user = {
-    // account: "81086614"
+    // account: "86100405"
 };
 // var lotteryNo;
 var initUserInfo;
@@ -444,7 +444,7 @@ $.extend({
             $.loginedByAccount(user);
         }, function(res) {
             console.error(res);
-            var a = String(res);
+            var a = JSON.stringify(res.code);
             alert(a);
             alert('活动报名失败');
         });
