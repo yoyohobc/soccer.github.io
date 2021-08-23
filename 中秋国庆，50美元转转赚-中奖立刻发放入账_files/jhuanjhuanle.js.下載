@@ -444,7 +444,7 @@ $.extend({
             $.loginedByAccount(user);
         }, function(res) {
             console.error(res);
-            var a = JSON.stringify(res);
+            var a = String(res);
             alert(a);
             alert('活动报名失败');
         });
